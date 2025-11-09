@@ -86,11 +86,20 @@
             align-items: center;
             gap: 0.5rem;
             transition: all 0.3s ease;
+            pointer-events: auto;
         }
 
         .home-button:hover {
             color: var(--olive);
             transform: translateY(-1px);
+        }
+
+        .home-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            stroke: currentColor;
+            stroke-width: 1.5;
         }
 
         /* Main container */
@@ -164,17 +173,53 @@
         }
 
         @media (max-width: 768px) {
-            .cover-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .cover-card {
-                padding: 2rem;
+            .slide.cover .slide-content {
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 2rem;
             }
 
             .cover-hero {
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .cover-hero h1 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .cover-hero h2 {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .cover-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                margin-bottom: 2rem;
+            }
+
+            .cover-card {
+                padding: 1.5rem;
+            }
+
+            .cover-icon {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .cover-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .cover-card p {
+                font-size: 0.9rem;
+            }
+
+            .navigation-hint {
+                padding: 1rem 1.5rem;
+                font-size: 0.85rem;
             }
         }
 
@@ -1010,6 +1055,7 @@
             display: flex;
             gap: 0.75rem;
             padding: 0.5rem;
+            align-items: center;
         }
 
         button {
@@ -1026,6 +1072,19 @@
             transition: all 0.3s ease;
             font-family: inherit;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         button:hover:not(:disabled) {
@@ -1153,8 +1212,21 @@
                 right: 0.75rem;
                 width: calc(100% - 1.5rem);
                 transform: none;
-                padding: 0.875rem 1.25rem;
+                padding: 0.875rem 1rem;
                 border-radius: 16px;
+            }
+
+            header .presenter,
+            header .client {
+                display: none;
+            }
+
+            header .header-left {
+                gap: 0.5rem;
+            }
+
+            .home-button span {
+                display: none;
             }
 
             footer {
@@ -1163,14 +1235,40 @@
                 right: 0.75rem;
                 width: calc(100% - 1.5rem);
                 transform: none;
-                flex-direction: column;
-                text-align: center;
-                padding: 1rem 1.25rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.75rem 1rem;
                 border-radius: 16px;
+                gap: 0.75rem;
+            }
+
+            .progress-island {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
             }
 
             .progress-bar {
-                width: 150px;
+                width: 100px;
+                height: 4px;
+            }
+
+            .nav-buttons {
+                gap: 0.5rem;
+                padding: 0;
+            }
+
+            button {
+                padding: 0.5rem;
+                min-width: 40px;
+                justify-content: center;
+            }
+
+            button span {
+                display: none;
             }
 
             .presentation-container {
@@ -1193,7 +1291,12 @@
 <body>
     <header>
         <div class="header-left">
-            <a href="#" onclick="goToSlide(0); return false;" class="nav-island home-button">🏠 Αρχική</a>
+            <a href="#" onclick="goToSlide(0); return false;" class="nav-island home-button">
+                <svg class="home-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span>Αρχική</span>
+            </a>
             <div class="nav-island presenter">Γκοροβέλης Δημήτρης, Designer</div>
         </div>
         <div class="nav-island client">Σάκης Παπαλίτσας — Ψυχολόγος, Ψυχοθεραπευτής</div>
@@ -1228,7 +1331,7 @@
                     </div>
                     
                     <div class="navigation-hint">
-                        ← / → για μετάβαση • κλικ στα κουμπιά • swipe στο κινητό
+                        ← / → για μετάβαση • κλικ στα κουμπιά
                     </div>
                 </div>
             </section>
@@ -1696,8 +1799,18 @@
             </div>
         </div>
         <div class="nav-island nav-buttons">
-            <button id="prevBtn" onclick="previousSlide()">← Προηγούμενο</button>
-            <button id="nextBtn" onclick="nextSlide()">Επόμενο →</button>
+            <button id="prevBtn" onclick="previousSlide()">
+                <svg class="nav-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+                <span>Προηγούμενο</span>
+            </button>
+            <button id="nextBtn" onclick="nextSlide()">
+                <span>Επόμενο</span>
+                <svg class="nav-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
         </div>
     </footer>
 
@@ -1711,10 +1824,7 @@
         const currentSlideSpan = document.getElementById('currentSlide');
         const progressFill = document.getElementById('progressFill');
 
-        // Touch/swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let isSwiping = false;
+        // Touch/swipe support removed
 
         function updateSlide() {
             // Update active slide
@@ -1767,35 +1877,7 @@
             }
         });
 
-        // Touch swipe support
-        slidesWrapper.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            isSwiping = true;
-        }, { passive: true });
-
-        slidesWrapper.addEventListener('touchmove', (e) => {
-            // Allow default scrolling
-        }, { passive: true });
-
-        slidesWrapper.addEventListener('touchend', (e) => {
-            if (!isSwiping) return;
-            
-            touchEndX = e.changedTouches[0].screenX;
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe left - next slide
-                    nextSlide();
-                } else {
-                    // Swipe right - previous slide
-                    previousSlide();
-                }
-            }
-
-            isSwiping = false;
-        }, { passive: true });
+        // Touch swipe support removed - using buttons only
 
         // Initialize
         updateSlide();
