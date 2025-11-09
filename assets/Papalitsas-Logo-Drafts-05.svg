@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 773.25 773.25">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #5c9d9e;
+        stroke-width: 7px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3 {
+        fill: #8ca787;
+        font-family: NotoSerif-Regular, 'Noto Serif';
+        font-size: 73.38px;
+        font-variation-settings: 'wght' 400, 'wdth' 100;
+      }
+
+      .cls-4 {
+        font-family: Manrope-Light, Manrope;
+        font-size: 26.16px;
+        font-variation-settings: 'wght' 300;
+        font-weight: 300;
+      }
+
+      .cls-4, .cls-5 {
+        fill: #667c8c;
+      }
+
+      .cls-5 {
+        font-family: Manrope-Regular, Manrope;
+        font-size: 31.02px;
+        font-variation-settings: 'wght' 400;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-9 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-10 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-11 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-12 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-13 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-14 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        stroke: #667c8c;
+        stroke-width: 4px;
+      }
+    </style>
+  </defs>
+  <text class="cls-3" transform="translate(63.04 516.79)"><tspan x="0" y="0">Σάκης Πα</tspan><tspan class="cls-16" x="333.97" y="0">π</tspan><tspan class="cls-6" x="380.79" y="0">αλ</tspan><tspan class="cls-8" x="470.46" y="0">ί</tspan><tspan class="cls-16" x="487.05" y="0">τσ</tspan><tspan class="cls-11" x="566.45" y="0">α</tspan><tspan x="611.87" y="0">ς</tspan></text>
+  <text class="cls-5" transform="translate(166.89 568.14)"><tspan x="0" y="0">Ψυ</tspan><tspan class="cls-9" x="40.23" y="0">χ</tspan><tspan class="cls-12" x="55.96" y="0">ο</tspan><tspan class="cls-14" x="73.06" y="0">λ</tspan><tspan class="cls-10" x="88.51" y="0">όγ</tspan><tspan x="121.37" y="0">ος – Ψυ</tspan><tspan class="cls-10" x="226.27" y="0">χ</tspan><tspan x="242" y="0">οθεραπευτ</tspan><tspan class="cls-15" x="403.98" y="0">ή</tspan><tspan x="422.3" y="0">ς</tspan></text>
+  <text class="cls-4" transform="translate(221.02 610.65)"><tspan x="0" y="0">Πα</tspan><tspan class="cls-13" x="33.56" y="0">ι</tspan><tspan x="41.64" y="0">δ</tspan><tspan class="cls-13" x="56.89" y="0">ι</tspan><tspan class="cls-7" x="64.97" y="0">ά • Έφηβοι • Ενήλικες</tspan></text>
+  <path class="cls-1" d="M342.03,338.82c-19.95,8.91-49.69,3.36-56.75-18.14-1.72-5.09-1.36-14.02,1.9-18.71,2.86-4.58,14.51-14.96,22.45-11.26,10.31,4.81,6.08,13.27-2.65,15.8-6.82,1.98-15.44-7.06-17.19-12.63-16.06-51.06,54.39-81.11,89.53-52.21,3.79,3.11,6.56,20.89-17.15,22.96-27.46,2.4-20.97-31.7-4.91-38.18,93.04-37.54,160.63,57.59,94.14,106.04-13.04,9.5-33.31,28.71-58.51,20.19-29.71-10.05-9.85-53.8,30.73-34.36,51.73,24.79.36,68.4-43.62,70.04"/>
+  <circle class="cls-2" cx="392.28" cy="309.75" r="139.65"/>
+  <circle class="cls-2" cx="376.78" cy="295.58" r="139.65"/>
+</svg>

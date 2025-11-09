@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 773.25 773.25">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 31.02px;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: Manrope-Light, Manrope;
+        font-variation-settings: 'wght' 300;
+        font-weight: 300;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: #667c8c;
+      }
+
+      .cls-5 {
+        fill: #8ca787;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        font-size: 26.16px;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-10 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-11 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        font-family: STIXTwoTextRoman-SemiBold, 'STIX Two Text';
+        font-size: 81.57px;
+        font-variation-settings: 'wght' 600;
+        font-weight: 600;
+      }
+
+      .cls-12 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-13 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-14 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-16 {
+        letter-spacing: 0em;
+      }
+
+      .cls-17 {
+        letter-spacing: 0em;
+      }
+
+      .cls-18 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <text class="cls-3" transform="translate(50.6 500.58)"><tspan x="0" y="0">Σάκης Π</tspan><tspan class="cls-15" x="295.11" y="0">α</tspan><tspan class="cls-11" x="340.7" y="0">π</tspan><tspan class="cls-17" x="387.85" y="0">α</tspan><tspan x="433.04" y="0">λί</tspan><tspan class="cls-16" x="498.7" y="0">τ</tspan><tspan class="cls-17" x="530.27" y="0">σα</tspan><tspan class="cls-6" x="619.83" y="0">ς</tspan></text>
+  <text class="cls-1" transform="translate(159.93 550.41)"><tspan x="0" y="0">Ψυ</tspan><tspan class="cls-10" x="39.45" y="0">χ</tspan><tspan class="cls-12" x="54.9" y="0">ο</tspan><tspan class="cls-14" x="71.74" y="0">λ</tspan><tspan class="cls-10" x="86.72" y="0">όγ</tspan><tspan x="118.86" y="0">ος – Ψυ</tspan><tspan class="cls-9" x="222.5" y="0">χ</tspan><tspan x="237.95" y="0">οθεραπευτ</tspan><tspan class="cls-18" x="397.48" y="0">ή</tspan><tspan class="cls-7" x="415.54" y="0">ς</tspan></text>
+  <text class="cls-2" transform="translate(210.57 592.92)"><tspan x="0" y="0">Πα</tspan><tspan class="cls-13" x="33.56" y="0">ι</tspan><tspan x="41.64" y="0">δ</tspan><tspan class="cls-13" x="56.89" y="0">ι</tspan><tspan class="cls-8" x="64.97" y="0">ά • Έφηβοι • Ενήλικες</tspan></text>
+  <g>
+    <path class="cls-4" d="M321.31,280.65h-36.82c-2.39,0-3.99,2.48-2.99,4.66l17.97,39.34c.32.71.39,1.51.17,2.26l-14.84,52.82c-.59,2.1.99,4.18,3.17,4.18h33.36c1.82,0,3.29-1.48,3.29-3.29l-.11-76.8.1-19.85c0-1.82-1.47-3.31-3.29-3.31Z"/>
+    <path class="cls-4" d="M431.05,280.65h33.74c2.39,0,3.99,2.48,2.99,4.66l-17.97,39.34c-.32.71-.39,1.51-.17,2.26l14.84,52.82c.59,2.1-.99,4.18-3.17,4.18h-29.82c-1.82,0-3.29-1.48-3.29-3.29l.11-76.8-.1-20.31c0-1.57,1.26-2.85,2.83-2.85Z"/>
+    <circle class="cls-5" cx="376.74" cy="279.05" r="18.93"/>
+    <path class="cls-5" d="M377.58,221.96h0s-.02,0-.02,0h0s.05,0,.05,0h0s-.02,0-.02,0h0c64.2,0,85.28,28.78,93.97,40.84,1.57,2.18.03,5.22-2.66,5.22h-38.22c-1.37,0-2.59-.84-3.07-2.12-2.87-7.52-9.08-32.5-50.02-32.5h0s0,0,0,0h.02,0s0,0,0,0h-.05s0,0,0,0h.02s0,0,0,0h0s-2.81,0-2.81,0h0s0,0,0,0h.02,0s0,0,0,0h-.05s0,0,0,0h0s.02,0,.02,0h0s0,0,0,0c-40.94,0-47.15,24.97-50.02,32.5-.49,1.28-1.71,2.12-3.07,2.12h-38.22c-2.69,0-4.23-3.04-2.66-5.22,8.69-12.07,29.77-40.84,93.97-40.84h0s-.02,0-.02,0h0s.05,0,.05,0h0s-.02,0-.02,0h0s2.81,0,2.81,0Z"/>
+  </g>
+  <rect class="cls-5" x="339.35" y="362.73" width="74.8" height="21.18" rx="2.32" ry="2.32"/>
+  <path class="cls-5" d="M350.2,343.63v19.09h53.08v-19.09c0-1.15-.93-2.08-2.08-2.08h-48.91c-1.15,0-2.08.93-2.08,2.08Z"/>
+  <path class="cls-5" d="M361.76,322.42v19.12h29.97v-19.12c0-1.14-.92-2.06-2.06-2.06h-25.86c-1.14,0-2.06.92-2.06,2.06Z"/>
+</svg>

@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Σύνοψη Παρουσίασης — QC Highlights Λογοτύπων</title>
+    <style>
+        :root {
+            --sage: #91A78B;
+            --olive: #66835E;
+            --beige: #E6DDD1;
+            --ink: #364931;
+            --slate: #6F828F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--beige);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Islands */
+        header {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            width: calc(100% - 3rem);
+            max-width: 1600px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-island {
+            background: transparent;
+            border-radius: 16px;
+            border: 1px solid rgba(54, 73, 49, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            pointer-events: auto;
+        }
+
+        header .presenter {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        header .client {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .home-button {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            color: var(--olive);
+            transform: translateY(-1px);
+        }
+
+        /* Main container */
+        .presentation-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Slide */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0 6rem 5rem 6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(20px);
+            overflow-y: auto;
+        }
+
+        .slide.cover {
+            justify-content: center;
+            padding: 5rem 6rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .slide-content {
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding-top: 3.3rem;
+        }
+
+        /* Cover Slide */
+        .slide.cover {
+            text-align: center;
+            padding: 8rem 3rem;
+            overflow-y: auto;
+            justify-content: center;
+        }
+
+        .slide.cover .slide-content {
+            max-width: 1000px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .cover-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cover-card {
+                padding: 2rem;
+            }
+
+            .cover-hero {
+                margin-bottom: 3rem;
+            }
+        }
+
+        .cover-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slide.cover h1 {
+            font-size: 3.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .slide h2 {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--olive);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+
+        .slide.cover h2 {
+            font-size: 1.44rem;
+            color: var(--slate);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .slide h3 {
+            font-size: 1.12rem;
+            color: var(--olive);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cover-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cover-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cover-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cover-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .cover-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cover-card h3 {
+            font-size: 1.2rem;
+            color: var(--olive);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .cover-card p {
+            font-size: 1rem;
+            color: var(--ink);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .navigation-hint {
+            text-align: center;
+            padding: 1.25rem 2rem;
+            background: rgba(145, 167, 139, 0.2);
+            backdrop-filter: blur(10px);
+            color: var(--ink);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0 auto;
+            border: 1px solid rgba(54, 73, 49, 0.1);
+        }
+
+        /* Logo Slides Layout */
+        .logo-slide-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 0;
+            align-items: stretch;
+            height: 100%;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .logo-image-section {
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .logo-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            overflow-y: auto;
+            height: 100%;
+            padding: 3.3rem 3rem 3rem 0;
+        }
+
+        .logo-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .logo-content::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .logo-content::-webkit-scrollbar-thumb {
+            background: var(--sage);
+            border-radius: 3px;
+        }
+
+        .logo-content::-webkit-scrollbar-thumb:hover {
+            background: var(--olive);
+        }
+
+        .logo-image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+        }
+
+        .slide.active .logo-image-wrapper {
+            transform: translateY(0);
+        }
+
+        .logo-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+
+        .logo-content h2 {
+            font-size: 2.24rem;
+            margin-bottom: 1rem;
+        }
+
+        .logo-content h3 {
+            font-size: 1.04rem;
+            color: var(--slate);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .highlights-section {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .highlights-section h4 {
+            font-size: 1.3rem;
+            color: var(--olive);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights-list li {
+            margin-bottom: 1.25rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: var(--ink);
+        }
+
+        .highlights-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .highlights-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* QC Card */
+        .qc-card {
+            background: var(--beige);
+            border: 2px solid var(--sage);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .qc-card h4 {
+            font-size: 1.4rem;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .qc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(54, 73, 49, 0.1);
+        }
+
+        .qc-item:last-child {
+            border-bottom: none;
+        }
+
+        .qc-label {
+            font-size: 1rem;
+            color: var(--slate);
+            font-weight: 500;
+        }
+
+        .qc-stars {
+            font-size: 1.3rem;
+            color: var(--olive);
+            letter-spacing: 0.15rem;
+            font-weight: 600;
+        }
+
+        /* Brief Slide */
+        .brief-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 3.3rem;
+            padding-bottom: 3.63rem;
+        }
+
+        .brief-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .brief-section h4 {
+            font-size: 1.5rem;
+            color: var(--olive);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .brief-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .brief-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .brief-section li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: var(--ink);
+        }
+
+        .brief-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Feedback/Evaluation Slide */
+        .feedback-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 3.3rem;
+            padding-bottom: 3.63rem;
+        }
+
+        /* Compact styling for feedback slide */
+        .feedback-content .logo-evaluation {
+            padding: 1.5rem;
+        }
+
+        .feedback-content .logo-preview {
+            height: 140px;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+
+        .feedback-content .logo-evaluation h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-content .logo-evaluation .logo-subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .feedback-content .rating-section {
+            margin-bottom: 1rem;
+        }
+
+        .feedback-content .comments-section {
+            margin-top: 1rem;
+        }
+
+        .feedback-content .comments-section textarea {
+            min-height: 60px;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .feedback-content #feedbackForm {
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-content .feedback-intro {
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-content .feedback-intro h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feedback-content .feedback-intro p {
+            font-size: 1rem;
+        }
+
+        .feedback-intro {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .feedback-intro p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--ink);
+            margin-top: 1rem;
+        }
+
+        #feedbackForm {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-evaluation {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-preview {
+            width: 100%;
+            height: 180px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-evaluation h4 {
+            font-size: 1.4rem;
+            color: var(--olive);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .logo-evaluation .logo-subtitle {
+            font-size: 1rem;
+            color: var(--slate);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .rating-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-section label {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .rating-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rating-input input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--beige);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .rating-input input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--olive);
+            cursor: pointer;
+        }
+
+        .rating-input input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--olive);
+            cursor: pointer;
+            border: none;
+        }
+
+        .rating-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--olive);
+            min-width: 3rem;
+            text-align: center;
+        }
+
+        .comments-section {
+            margin-top: 1.5rem;
+        }
+
+        .comments-section label {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .comments-section textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: white;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .comments-section textarea:focus {
+            outline: none;
+            border-color: var(--olive);
+        }
+
+        .submit-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--olive) 100%);
+            color: white;
+            border: none;
+            padding: 1.25rem 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            font-family: inherit;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .additional-comments-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .additional-comments-section label {
+            display: block;
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .additional-comments-section textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: white;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .additional-comments-section textarea:focus {
+            outline: none;
+            border-color: var(--olive);
+        }
+
+        /* Modal for fallback */
+        .email-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-modal.active {
+            display: flex;
+        }
+
+        .email-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .email-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-modal-header h3 {
+            font-size: 1.5rem;
+            color: var(--olive);
+            margin: 0;
+        }
+
+        .email-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--slate);
+            padding: 0;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .email-modal-close:hover {
+            background: var(--beige);
+        }
+
+        .email-modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .email-modal-body p {
+            color: var(--ink);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .email-text-container {
+            position: relative;
+        }
+
+        .email-text {
+            width: 100%;
+            min-height: 300px;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 12px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--ink);
+            background: var(--beige);
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--olive);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: var(--sage);
+        }
+
+        .copy-button.copied {
+            background: #4CAF50;
+        }
+
+        /* Summary Slide */
+        .summary-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-top: 3.3rem;
+            padding-bottom: 3.63rem;
+        }
+
+        .summary-section {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .summary-section h4 {
+            font-size: 1.5rem;
+            color: var(--olive);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .summary-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--sage);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .summary-list li strong {
+            color: var(--olive);
+            font-weight: 600;
+        }
+
+        .closing-statement {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--olive) 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer Islands */
+        footer {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 4rem);
+            max-width: 1600px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        .progress-island {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 0.875rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .progress-bar {
+            width: 180px;
+            height: 5px;
+            background: rgba(54, 73, 49, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--olive);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 3px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.5rem;
+        }
+
+        button {
+            background: rgba(230, 221, 209, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--ink);
+            border: 1px solid rgba(54, 73, 49, 0.2);
+            padding: 0.65rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        button:hover:not(:disabled) {
+            background: rgba(230, 221, 209, 0.95);
+            color: var(--olive);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            border-color: rgba(54, 73, 49, 0.3);
+        }
+
+        button:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        button:focus {
+            outline: 3px solid var(--beige);
+            outline-offset: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .logo-slide-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .logo-image-wrapper {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 3rem 2rem;
+            }
+
+            .slide h1 {
+                font-size: 2rem;
+            }
+
+            .slide.cover h1 {
+                font-size: 2.56rem;
+            }
+
+            /* Feedback form mobile */
+            .feedback-content {
+                padding-top: 2rem;
+            }
+
+            .feedback-intro {
+                padding: 1.5rem;
+            }
+
+            #feedbackForm {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .logo-evaluation {
+                padding: 1.5rem;
+            }
+
+            .logo-preview {
+                height: 150px;
+                padding: 1rem;
+            }
+
+            .rating-input {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .rating-value {
+                min-width: auto;
+            }
+
+            .submit-section {
+                padding: 1.5rem;
+            }
+
+            .submit-button {
+                width: 100%;
+                padding: 1rem 2rem;
+            }
+
+            .additional-comments-section {
+                padding: 1.5rem;
+            }
+
+            .email-modal-content {
+                padding: 1.5rem;
+                max-width: 95%;
+            }
+
+            .email-text {
+                min-height: 200px;
+                font-size: 0.85rem;
+            }
+
+            .copy-button {
+                position: relative;
+                top: auto;
+                right: auto;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .slide h2 {
+                font-size: 1.6rem;
+            }
+
+            .logo-content h2 {
+                font-size: 1.792rem;
+            }
+
+            header {
+                top: 0.75rem;
+                left: 0.75rem;
+                right: 0.75rem;
+                width: calc(100% - 1.5rem);
+                transform: none;
+                padding: 0.875rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            footer {
+                bottom: 0.75rem;
+                left: 0.75rem;
+                right: 0.75rem;
+                width: calc(100% - 1.5rem);
+                transform: none;
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem 1.25rem;
+                border-radius: 16px;
+            }
+
+            .progress-bar {
+                width: 150px;
+            }
+
+            .presentation-container {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            button {
+                padding: 0.65rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="#" onclick="goToSlide(0); return false;" class="nav-island home-button">🏠 Αρχική</a>
+            <div class="nav-island presenter">Γκοροβέλης Δημήτρης, Designer</div>
+        </div>
+        <div class="nav-island client">Σάκης Παπαλίτσας — Ψυχολόγος, Ψυχοθεραπευτής</div>
+    </header>
+
+    <main class="presentation-container">
+        <div class="slides-wrapper" id="slidesWrapper">
+            <!-- Slide 1: Cover -->
+            <section class="slide cover active" id="slide1">
+                <div class="slide-content">
+                    <div class="cover-hero">
+                        <h1>Προτάσεις Λογοτύπου</h1>
+                        <h2>Γραφείο Σάκη Παπαλίτσα — Ψυχολόγος, Ψυχοθεραπευτής</h2>
+                    </div>
+                    
+                    <div class="cover-grid">
+                        <div class="cover-card">
+                            <div class="cover-icon">🎨</div>
+                            <h3>Σχεδιαστής</h3>
+                            <p>Γκοροβέλης Δημήτρης</p>
+                        </div>
+                        <div class="cover-card">
+                            <div class="cover-icon">👤</div>
+                            <h3>Πελάτης</h3>
+                            <p>Σάκης Παπαλίτσας<br>Ψυχολόγος — Ψυχοθεραπευτής</p>
+                        </div>
+                        <div class="cover-card">
+                            <div class="cover-icon">📋</div>
+                            <h3>Περιεχόμενο</h3>
+                            <p>Τέσσερις προτάσεις λογοτύπου με ανάλυση των δυνατών σημείων και αξιολόγηση βάση στρατηγικής</p>
+                        </div>
+                    </div>
+                    
+                    <div class="navigation-hint">
+                        ← / → για μετάβαση • κλικ στα κουμπιά • swipe στο κινητό
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2: Brief -->
+            <section class="slide" id="slide2">
+                <div class="slide-content">
+                    <div class="brief-content">
+                        <h1>Brief — Εν συντομία</h1>
+                        
+                        <div class="brief-section">
+                            <h4>Ονομασία & Lockups</h4>
+                            <p><strong>Masterbrand:</strong> «Σάκης Παπαλίτσας» (ή «Αθανάσιος Παπαλίτσας» για επίσημα)</p>
+                            <p><strong>Descriptor:</strong> «Ψυχολόγος – Ψυχοθεραπευτής»</p>
+                            <p><strong>Co-descriptor:</strong> «Παιδιά • Έφηβοι • Ενήλικες»</p>
+                            <p><strong>EN wordmark:</strong> "Sakis Papalitsas — Psychologist"</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4>Concept Territories</h4>
+                            <ul>
+                                <li><strong>Bridge – Home ↔ School:</strong> Μια καθαρή, μινιμαλιστική "γέφυρα" που ενώνει δύο διακριτά σχήματα (σπίτι – σχολείο). Μήνυμα: «Δεσμοί & συνέργεια γονέα–σχολείου–παιδιού».</li>
+                                <li><strong>Evolving Brain (Foundations → Growth):</strong> Αφηρημένες στοιβάδες/κύκλους που μεγαλώνουν ή πυκνώνουν. Μήνυμα: «Σταθερά βήματα, γνωστική ωρίμανση, εξελισσόμενη ικανότητα».</li>
+                                <li><strong>Steps / Foundations:</strong> Τρία διακριτά σκαλοπάτια/γραμμές κάτω από το wordmark που δηλώνουν δομημένη πορεία από την πρώτη συνεδρία.</li>
+                            </ul>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4>Visual Language</h4>
+                            <p>Μινιμαλιστικό, ανθρώπινο, ζεστό. Γραμμικότητα με στρογγυλεμένα τελειώματα. Οπτική ηρεμία: μεγάλα περιθώρια, χαμηλή πυκνότητα λεπτομερειών.</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4>Χρώματα</h4>
+                            <p><strong>Primary Green:</strong> #91A78B (Dark #66835E, Light #AEBBAA)</p>
+                            <p><strong>Secondary Beige:</strong> #E6DDD1 (Dark #987648, Light #F0EEEA)</p>
+                            <p><strong>Text:</strong> #364931 (primary), #574124 (secondary)</p>
+                            <p>Εκδοχές: Full color, Mono Dark, Inverse Light</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4>Τυπογραφία</h4>
+                            <p><strong>Wordmark (GR):</strong> Serif με χαρακτήρα, προσαρμοσμένο kerning στα ελληνικά (Playfair Display / STIX Two Text / EB Garamond)</p>
+                            <p><strong>Descriptor (GR):</strong> Humanist Sans, καθαρό, ευανάγνωστο (Nunito Sans / Inter / Plus Jakarta Sans)</p>
+                            <p>Ζεύξη: Serif (όνομα) + Sans (descriptor)</p>
+                        </div>
+
+                        <div class="brief-section">
+                            <h4>Κριτήρια Αξιολόγησης</h4>
+                            <ul>
+                                <li>Ανάγνωση στα ελληνικά & σε μικρά μεγέθη</li>
+                                <li>Σαφής σύνδεση με Bridge/Home–School ή/και Foundations/Evolving</li>
+                                <li>Ευκολία εφαρμογής (πινακίδα, στάμπα, favicon)</li>
+                                <li>Διαχρονικότητα & επαγγελματική θερμότητα</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3: Bridge & Steps -->
+            <section class="slide" id="slide3">
+                <div class="slide-content">
+                    <div class="logo-slide-content">
+                        <div class="logo-content">
+                            <h2>Η γέφυρα που δείχνει την πορεία</h2>
+                            <h3>Refined "Bridge & Steps"</h3>
+                            
+                            <div class="highlights-section">
+                                <h4>Δυνατά σημεία της πρότασης:</h4>
+                                <ul class="highlights-list">
+                                    <li>Εκφράζει οπτικά τη θεραπευτική γέφυρα μεταξύ οικογένειας και σχολείου, με πορεία βημάτων που υποδηλώνει προόδου.</li>
+                                    <li>Συμπαγές σύμβολο που λειτουργεί ανεξάρτητα (favicon, social media).</li>
+                                    <li>Ισορροπία μεταξύ συμβολισμού και τυπογραφίας με καθαρό, επαγγελματικό τόνο.</li>
+                                    <li>Παλέτα sage/ink με στρογγυλεμένες φόρμες που αποπνέουν ηρεμία και εμπιστοσύνη.</li>
+                                    <li>Εξαιρετική κλιμάκωση σε web, εκτύπωση και σήμανση.</li>
+                                </ul>
+                            </div>
+
+                            <div class="qc-card">
+                                <h4>Αξιολόγηση βάση στρατηγικής</h4>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συσχέτιση με Brief</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Ιεραρχία & Αναγνωσιμότητα</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Τόνος & Αίσθηση</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διαχρονικότητα</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Κλιμάκωση/Χρήσεις</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διακριτή Ταυτότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συμβολική Σαφήνεια</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="logo-image-section">
+                            <div class="logo-image-wrapper">
+                                <img src="assets/Papalitsas-Logo-Drafts_Logo 7.svg" alt="Bridge & Steps preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Abstract Brain & Flow -->
+            <section class="slide" id="slide4">
+                <div class="slide-content">
+                    <div class="logo-slide-content">
+                        <div class="logo-content">
+                            <h2>Ροή σκέψης και αλλαγή</h2>
+                            <h3>Abstract Brain & Flow</h3>
+                            
+                            <div class="highlights-section">
+                                <h4>Δυνατά σημεία της πρότασης:</h4>
+                                <ul class="highlights-list">
+                                    <li>Αφηγείται μετατόπιση από συναίσθημα σε λογική με αφηρημένη ροή και κύκλους.</li>
+                                    <li>Μοντέρνα, καθαρή αισθητική που ξεχωρίζει και δημιουργεί διαφοροποίηση.</li>
+                                    <li>Ισχυρή τυπογραφική ιεραρχία και καλό χρωματικό ζύγισμα.</li>
+                                    <li>Ιδανικό ως δευτερεύον μοτίβο σε εικαστικές επιφάνειες (headers, patterns).</li>
+                                </ul>
+                            </div>
+
+                            <div class="qc-card">
+                                <h4>Αξιολόγηση βάση στρατηγικής</h4>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συσχέτιση με Brief</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Ιεραρχία & Αναγνωσιμότητα</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Τόνος & Αίσθηση</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διαχρονικότητα</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Κλιμάκωση/Χρήσεις</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διακριτή Ταυτότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συμβολική Σαφήνεια</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="logo-image-section">
+                            <div class="logo-image-wrapper">
+                                <img src="assets/Papalitsas-Logo-Drafts_Logo 3.svg" alt="Abstract Brain & Flow preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Two Profiles -->
+            <section class="slide" id="slide5">
+                <div class="slide-content">
+                    <div class="logo-slide-content">
+                        <div class="logo-content">
+                            <h2>Σχέση και ενσυναίσθηση σε μία γραμμή</h2>
+                            <h3>Two Profiles, One Line</h3>
+                            
+                            <div class="highlights-section">
+                                <h4>Δυνατά σημεία της πρότασης:</h4>
+                                <ul class="highlights-list">
+                                    <li>Εκφράζει θεραπευτική σχέση με δύο φιγούρες που ενώνονται από μια συνεχόμενη γραμμή.</li>
+                                    <li>Απλότητα και λευκός χώρος για καθαρή ανάγνωση.</li>
+                                    <li>Ζεστός και προσιτός τόνος, κατάλληλος για γονείς και εφήβους.</li>
+                                    <li>Ήρεμη και συνεπής παλέτα με την ταυτότητα.</li>
+                                </ul>
+                            </div>
+
+                            <div class="qc-card">
+                                <h4>Αξιολόγηση βάση στρατηγικής</h4>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συσχέτιση με Brief</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Ιεραρχία & Αναγνωσιμότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Τόνος & Αίσθηση</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διαχρονικότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Κλιμάκωση/Χρήσεις</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διακριτή Ταυτότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συμβολική Σαφήνεια</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="logo-image-section">
+                            <div class="logo-image-wrapper">
+                                <img src="assets/Papalitsas-Logo-Drafts_Logo 2.svg" alt="Two Profiles preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Arch & Pillars -->
+            <section class="slide" id="slide6">
+                <div class="slide-content">
+                    <div class="logo-slide-content">
+                        <div class="logo-content">
+                            <h2>Σταθερότητα και προστασία</h2>
+                            <h3>Arch & Pillars</h3>
+                            
+                            <div class="highlights-section">
+                                <h4>Δυνατά σημεία της πρότασης:</h4>
+                                <ul class="highlights-list">
+                                    <li>Το τόξο και οι δύο πυλώνες υποδηλώνουν προστατευτικό πλαίσιο και έννοια γέφυρας.</li>
+                                    <li>Τα τρία στοιχεία υπαινίσσονται πορεία/βήματα με καθαρή γεωμετρία.</li>
+                                    <li>Διαχρονικό design που λειτουργεί εξαιρετικά σε μονόχρωμες εφαρμογές.</li>
+                                    <li>Κατάλληλο για corporate/επίσημες χρήσεις και σήμανση.</li>
+                                </ul>
+                            </div>
+
+                            <div class="qc-card">
+                                <h4>Αξιολόγηση βάση στρατηγικής</h4>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συσχέτιση με Brief</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Ιεραρχία & Αναγνωσιμότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Τόνος & Αίσθηση</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διαχρονικότητα</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Κλιμάκωση/Χρήσεις</span>
+                                    <span class="qc-stars">★★★★★</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Διακριτή Ταυτότητα</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                                <div class="qc-item">
+                                    <span class="qc-label">Συμβολική Σαφήνεια</span>
+                                    <span class="qc-stars">★★★★☆</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="logo-image-section">
+                            <div class="logo-image-wrapper">
+                                <img src="assets/Papalitsas-Logo-Drafts_Logo 1.svg" alt="Arch & Pillars preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Summary -->
+            <section class="slide" id="slide7">
+                <div class="slide-content">
+                    <div class="summary-content">
+                        <h1>Σύνοψη & Επόμενα Βήματα</h1>
+                        
+                        <div class="summary-section">
+                            <h4>Σύνοψη προτάσεων</h4>
+                            <ul class="summary-list">
+                                <li><strong>Arch & Pillars (Σταθερότητα και προστασία):</strong> Προτίμηση — Σταθερή, διαχρονική επιλογή για επίσημες χρήσεις. Η πιο πλήρης πρόταση απέναντι στο brief.</li>
+                                <li><strong>Bridge & Steps:</strong> Η γέφυρα που δείχνει την πορεία. Προτείνεται ως βάση για τελική βελτίωση και παραγωγή master assets.</li>
+                                <li><strong>Abstract Brain & Flow:</strong> Δυνατή οπτική ιστορία· ιδανικό για μοτίβα και εικαστικές εφαρμογές στο site και στα social media.</li>
+                                <li><strong>Two Profiles:</strong> Έμφαση στη σχέση και την ενσυναίσθηση· χρήσιμο σε human-centric επικοινωνία.</li>
+                            </ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <h4>Επόμενα βήματα</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--ink);">
+                                Στην επόμενη συνάντηση θα παρουσιαστούν τροποποιημένες μορφές του λογοτύπου, και στη συνέχεια θα οριστικοποιηθεί το λογότυπο στην τελευταία συνάντηση βάση των σχολίων σου.
+                            </p>
+                        </div>
+
+                        <div class="closing-statement">
+                            Η πρόταση <strong>Arch & Pillars (Σταθερότητα και προστασία)</strong> προτείνεται ως κύρια κατεύθυνση, ενώ τα δυνατά στοιχεία των υπολοίπων προτάσεων μπορούν να χρησιμοποιηθούν ως υποστηρικτική γλώσσα για μια ολοκληρωμένη ταυτότητα.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Feedback & Evaluation -->
+            <section class="slide" id="slide8">
+                <div class="slide-content">
+                    <div class="feedback-content">
+                        <h1>Αξιολόγηση & Feedback</h1>
+                        
+                        <div class="feedback-intro">
+                            <h2>Βαθμονομημένη Αξιολόγηση</h2>
+                            <p>Παρακαλώ αξιολόγησε κάθε πρόταση λογοτύπου σε κλίμακα 1-10 (1 = χαμηλή προτίμηση, 10 = υψηλή προτίμηση) και πρόσθεσε σχόλια ή feedback για κάθε μία.</p>
+                        </div>
+
+                        <form id="feedbackForm">
+                            <!-- Arch & Pillars -->
+                            <div class="logo-evaluation">
+                                <div class="logo-preview">
+                                    <img src="assets/Papalitsas-Logo-Drafts_Logo 1.svg" alt="Arch & Pillars preview">
+                                </div>
+                                <h4>Arch & Pillars</h4>
+                                <div class="logo-subtitle">Σταθερότητα και προστασία</div>
+                                
+                                <div class="rating-section">
+                                    <label for="rating-arch">Βαθμολογία (1-10):</label>
+                                    <div class="rating-input">
+                                        <input type="range" id="rating-arch" name="rating-arch" min="1" max="10" value="5" oninput="updateRating('arch', this.value)">
+                                        <span class="rating-value" id="rating-arch-value">5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-section">
+                                    <label for="comments-arch">Σχόλια / Feedback:</label>
+                                    <textarea id="comments-arch" name="comments-arch" placeholder="Πρόσθεσε τα σχόλια σου για αυτή την πρόταση..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Bridge & Steps -->
+                            <div class="logo-evaluation">
+                                <div class="logo-preview">
+                                    <img src="assets/Papalitsas-Logo-Drafts_Logo 7.svg" alt="Bridge & Steps preview">
+                                </div>
+                                <h4>Bridge & Steps</h4>
+                                <div class="logo-subtitle">Η γέφυρα που δείχνει την πορεία</div>
+                                
+                                <div class="rating-section">
+                                    <label for="rating-bridge">Βαθμολογία (1-10):</label>
+                                    <div class="rating-input">
+                                        <input type="range" id="rating-bridge" name="rating-bridge" min="1" max="10" value="5" oninput="updateRating('bridge', this.value)">
+                                        <span class="rating-value" id="rating-bridge-value">5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-section">
+                                    <label for="comments-bridge">Σχόλια / Feedback:</label>
+                                    <textarea id="comments-bridge" name="comments-bridge" placeholder="Πρόσθεσε τα σχόλια σου για αυτή την πρόταση..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Abstract Brain & Flow -->
+                            <div class="logo-evaluation">
+                                <div class="logo-preview">
+                                    <img src="assets/Papalitsas-Logo-Drafts_Logo 3.svg" alt="Abstract Brain & Flow preview">
+                                </div>
+                                <h4>Abstract Brain & Flow</h4>
+                                <div class="logo-subtitle">Ροή σκέψης και αλλαγή</div>
+                                
+                                <div class="rating-section">
+                                    <label for="rating-abstract">Βαθμολογία (1-10):</label>
+                                    <div class="rating-input">
+                                        <input type="range" id="rating-abstract" name="rating-abstract" min="1" max="10" value="5" oninput="updateRating('abstract', this.value)">
+                                        <span class="rating-value" id="rating-abstract-value">5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-section">
+                                    <label for="comments-abstract">Σχόλια / Feedback:</label>
+                                    <textarea id="comments-abstract" name="comments-abstract" placeholder="Πρόσθεσε τα σχόλια σου για αυτή την πρόταση..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Two Profiles -->
+                            <div class="logo-evaluation">
+                                <div class="logo-preview">
+                                    <img src="assets/Papalitsas-Logo-Drafts_Logo 2.svg" alt="Two Profiles preview">
+                                </div>
+                                <h4>Two Profiles</h4>
+                                <div class="logo-subtitle">Σχέση και ενσυναίσθηση σε μία γραμμή</div>
+                                
+                                <div class="rating-section">
+                                    <label for="rating-profiles">Βαθμολογία (1-10):</label>
+                                    <div class="rating-input">
+                                        <input type="range" id="rating-profiles" name="rating-profiles" min="1" max="10" value="5" oninput="updateRating('profiles', this.value)">
+                                        <span class="rating-value" id="rating-profiles-value">5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="comments-section">
+                                    <label for="comments-profiles">Σχόλια / Feedback:</label>
+                                    <textarea id="comments-profiles" name="comments-profiles" placeholder="Πρόσθεσε τα σχόλια σου για αυτή την πρόταση..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="additional-comments-section">
+                            <label for="additional-comments">Επιπλέον σχόλια:</label>
+                            <textarea id="additional-comments" name="additional-comments" placeholder="Πρόσθεσε οποιαδήποτε επιπλέον σχόλια ή σκέψεις..."></textarea>
+                        </div>
+
+                        <div class="submit-section">
+                            <button type="button" class="submit-button" onclick="generateFeedbackEmail()">Αποστολή Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Email Modal for fallback -->
+    <div class="email-modal" id="emailModal">
+        <div class="email-modal-content">
+            <div class="email-modal-header">
+                <h3>Αντιγράψε το μήνυμα</h3>
+                <button class="email-modal-close" onclick="closeEmailModal()">×</button>
+            </div>
+            <div class="email-modal-body">
+                <p>Αν το Gmail δεν άνοιξε αυτόματα, αντιγράψε το παρακάτω κείμενο και επικόλλησέ το στο email σου:</p>
+                <div class="email-text-container">
+                    <button class="copy-button" onclick="copyEmailText()">Αντιγραφή</button>
+                    <textarea class="email-text" id="emailText" readonly></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="nav-island progress-island">
+            <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        <div class="nav-island nav-buttons">
+            <button id="prevBtn" onclick="previousSlide()">← Προηγούμενο</button>
+            <button id="nextBtn" onclick="nextSlide()">Επόμενο →</button>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlideIndex = 0;
+        const totalSlides = 8;
+        const slidesWrapper = document.getElementById('slidesWrapper');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSlideSpan = document.getElementById('currentSlide');
+        const progressFill = document.getElementById('progressFill');
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isSwiping = false;
+
+        function updateSlide() {
+            // Update active slide
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlideIndex);
+            });
+
+            // Update buttons
+            prevBtn.disabled = currentSlideIndex === 0;
+            nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+
+            // Update progress
+            currentSlideSpan.textContent = currentSlideIndex + 1;
+            const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+            progressFill.style.width = progress + '%';
+
+            // Scroll to top of slide
+            slides[currentSlideIndex].scrollTop = 0;
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < totalSlides - 1) {
+                currentSlideIndex++;
+                updateSlide();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                currentSlideIndex = index;
+                updateSlide();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Touch swipe support
+        slidesWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isSwiping = true;
+        }, { passive: true });
+
+        slidesWrapper.addEventListener('touchmove', (e) => {
+            // Allow default scrolling
+        }, { passive: true });
+
+        slidesWrapper.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            
+            touchEndX = e.changedTouches[0].screenX;
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    previousSlide();
+                }
+            }
+
+            isSwiping = false;
+        }, { passive: true });
+
+        // Initialize
+        updateSlide();
+
+        // Handle image loading errors
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.style.cssText = 'padding: 2rem; text-align: center; color: var(--slate); font-size: 0.9rem;';
+                placeholder.textContent = 'Παρακαλώ προσθέστε την εικόνα: ' + this.src.split('/').pop();
+                this.parentElement.appendChild(placeholder);
+            });
+        });
+
+        // Feedback form functions
+        function updateRating(logoId, value) {
+            const valueElement = document.getElementById(`rating-${logoId}-value`);
+            if (valueElement) {
+                valueElement.textContent = value;
+            }
+        }
+
+        function generateFeedbackEmail() {
+            // Collect all ratings and comments
+            const ratings = {
+                'Arch & Pillars': {
+                    value: document.getElementById('rating-arch').value,
+                    comments: document.getElementById('comments-arch').value.trim()
+                },
+                'Bridge & Steps': {
+                    value: document.getElementById('rating-bridge').value,
+                    comments: document.getElementById('comments-bridge').value.trim()
+                },
+                'Abstract Brain & Flow': {
+                    value: document.getElementById('rating-abstract').value,
+                    comments: document.getElementById('comments-abstract').value.trim()
+                },
+                'Two Profiles': {
+                    value: document.getElementById('rating-profiles').value,
+                    comments: document.getElementById('comments-profiles').value.trim()
+                }
+            };
+
+            // Get additional comments
+            const additionalComments = document.getElementById('additional-comments').value.trim();
+
+            // Calculate weighted scores (weights can be adjusted)
+            const weights = {
+                'Arch & Pillars': 1.0,
+                'Bridge & Steps': 1.0,
+                'Abstract Brain & Flow': 1.0,
+                'Two Profiles': 1.0
+            };
+
+            // Build email subject
+            const subject = encodeURIComponent('Αξιολόγηση Λογοτύπων — Σάκης Παπαλίτσας');
+
+            // Build email body
+            let body = 'Αξιολόγηση Προτάσεων Λογοτύπου\n';
+            body += '=====================================\n\n';
+            body += `Ημερομηνία: ${new Date().toLocaleDateString('el-GR', { year: 'numeric', month: 'long', day: 'numeric' })}\n\n`;
+
+            // Add ratings and comments for each logo
+            body += 'ΒΑΘΜΟΛΟΓΙΕΣ ΚΑΙ ΣΧΟΛΙΑ\n';
+            body += '------------------------\n\n';
+
+            Object.keys(ratings).forEach(logoName => {
+                const rating = ratings[logoName];
+                const weightedScore = (parseFloat(rating.value) * weights[logoName]).toFixed(1);
+                
+                body += `${logoName}\n`;
+                body += `Βαθμολογία: ${rating.value}/10 (Weighted: ${weightedScore})\n`;
+                if (rating.comments) {
+                    body += `Σχόλια:\n${rating.comments}\n`;
+                } else {
+                    body += `Σχόλια: (Δεν δόθηκαν)\n`;
+                }
+                body += '\n';
+            });
+
+            // Add additional comments if provided
+            if (additionalComments) {
+                body += '\nΕΠΙΠΛΕΟΝ ΣΧΟΛΙΑ\n';
+                body += '---------------\n';
+                body += `${additionalComments}\n\n`;
+            }
+
+            // Summary section
+            body += '\nΣΥΝΟΨΗ\n';
+            body += '------\n';
+            
+            // Sort by rating (highest first)
+            const sortedLogos = Object.keys(ratings).sort((a, b) => {
+                return parseFloat(ratings[b].value) - parseFloat(ratings[a].value);
+            });
+
+            sortedLogos.forEach((logoName, index) => {
+                const rating = ratings[logoName];
+                body += `${index + 1}. ${logoName}: ${rating.value}/10\n`;
+            });
+
+            body += '\n';
+            body += '---\n';
+            body += 'Αυτό το email δημιουργήθηκε αυτόματα από την παρουσίαση.\n';
+
+            // Store body for fallback
+            document.getElementById('emailText').value = body;
+
+            // Create Gmail compose link
+            const email = 'gorodimitris@gmail.com';
+            const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${encodeURIComponent(body)}`;
+
+            // Try to open Gmail compose window
+            const gmailWindow = window.open(gmailLink, '_blank');
+
+            // Check if popup was blocked or failed
+            setTimeout(() => {
+                if (!gmailWindow || gmailWindow.closed || typeof gmailWindow.closed === 'undefined') {
+                    // Popup blocked or failed, show fallback modal
+                    showEmailModal();
+                } else {
+                    // Check if window is still open after a short delay
+                    setTimeout(() => {
+                        try {
+                            if (gmailWindow.closed) {
+                                showEmailModal();
+                            }
+                        } catch (e) {
+                            // Cross-origin issue, show modal as fallback
+                            showEmailModal();
+                        }
+                    }, 1000);
+                }
+            }, 500);
+        }
+
+        function showEmailModal() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.remove('active');
+        }
+
+        function copyEmailText() {
+            const emailText = document.getElementById('emailText');
+            emailText.select();
+            emailText.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                const copyButton = document.querySelector('.copy-button');
+                const originalText = copyButton.textContent;
+                copyButton.textContent = 'Αντιγράφηκε!';
+                copyButton.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyButton.textContent = originalText;
+                    copyButton.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                // Fallback for browsers that don't support execCommand
+                navigator.clipboard.writeText(emailText.value).then(() => {
+                    const copyButton = document.querySelector('.copy-button');
+                    const originalText = copyButton.textContent;
+                    copyButton.textContent = 'Αντιγράφηκε!';
+                    copyButton.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        copyButton.textContent = originalText;
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                });
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('emailModal');
+            if (e.target === modal) {
+                closeEmailModal();
+            }
+        });
+    </script>
+</body>
+</html>
